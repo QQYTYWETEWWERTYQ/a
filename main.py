@@ -1,13 +1,14 @@
 import sys, random
-from PyQt5 import uic
+
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QPainter, QPen, QColor
+from UI import Ui_Form
 
 
-class MyWidget(QMainWindow):
+class MyWidget(QMainWindow, Ui_Form):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.setWindowTitle('Git и случайные окружности')
         self.circles = []
         self.pushButton.clicked.connect(self.circle)
