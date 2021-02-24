@@ -1,5 +1,4 @@
-import sys
-import random
+import sys, random
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QPainter, QPen, QColor
@@ -11,9 +10,9 @@ class MyWidget(QMainWindow):
         uic.loadUi('UI.ui', self)
         self.setWindowTitle('Git и желтые окружности')
         self.circles = []
-        self.pushButton.clicked.connect(self.add_circle)
+        self.pushButton.clicked.connect(self.circle)
 
-    def add_circle(self):
+    def circle(self):
         d = random.randint(1, min([self.width(), self.height()]))
         x = random.randint(0, self.width() - d - 1)
         y = random.randint(0, self.height() - d - 1)
@@ -24,10 +23,10 @@ class MyWidget(QMainWindow):
     def paintEvent(self, *args, **kwargs):
         b = QPainter()
         b.begin(self)
-        self.draw_circles(b)
+        self.draw(b)
         b.end()
 
-    def draw_circles(self, a):
+    def draw(self, a):
         a.setBrush(QColor(0, 0, 0, 0))
         for color, data in self.circles:
             pen = QPen(QColor(*color), 5)
@@ -37,6 +36,6 @@ class MyWidget(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = MyWidget()
-    ex.show()
+    window = MyWidget()
+    window.show()
     sys.exit(app.exec())
