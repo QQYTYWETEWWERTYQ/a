@@ -8,7 +8,7 @@ class MyWidget(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi('UI.ui', self)
-        self.setWindowTitle('Git и желтые окружности')
+        self.setWindowTitle('Git и случайные окружности')
         self.circles = []
         self.pushButton.clicked.connect(self.circle)
 
@@ -16,7 +16,7 @@ class MyWidget(QMainWindow):
         d = random.randint(1, min([self.width(), self.height()]))
         x = random.randint(0, self.width() - d - 1)
         y = random.randint(0, self.height() - d - 1)
-        c = (255, 255, 0)
+        c = [random.randint(0, 255) for i in range(3)]
         self.circles += [(c, (x, y, d, d))]
         self.update()
 
